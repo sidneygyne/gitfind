@@ -22,7 +22,7 @@
 }
 
 input {
-    width: 70%;
+    width: 75%;
     border: 1px solid #999999;
     border-radius: 22px;
     color:  #999999;
@@ -48,4 +48,44 @@ button {
 
 button:hover {
     background: #2d333b;
+}
+
+.perfil {
+    display: flex;
+    margin: 40px 0;
+}
+
+.profile {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    border: 2px solid #e5e5e5;
+    margin-right: 32px;
+
+}
+
+.perfil h3 {
+    font-weight: 400;
+    color: #999999;
+    font-size: 24px;
+    margin: 0;
+}
+
+.perfil p, 
+.perfil span {
+    font-weight: 400;
+    color: #999999;
+    font-size: 12px;
+    margin: 0;
+}
+
+.perfil p {
+    margin: 20px 0 0 0;
+}
+.perfil span {
+    display: block;
+}
+
+hr {
+    color: #999999;
 }
