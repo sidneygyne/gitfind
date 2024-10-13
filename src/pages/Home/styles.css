@@ -41,6 +41,13 @@ input {
   margin-right: 12px;
 }
 
+.error-message {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
 .perfil {
   display: flex;
   margin: 40px 0;

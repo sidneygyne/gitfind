@@ -10,24 +10,31 @@ function App() {
   const [user, setUser] = useState("")
   const [currentUser, setCurrentUser] = useState(null)
   const [repos, setRepos] = useState(null)
+  const [error, setError] = useState("")
 
   const handleGetData = async () => {
-    const userData = await fetch(`https://api.github.com/users/${user}`)
-    const newUser = await userData.json()
-    //console.log(newUser)
+    setError("")
+    setCurrentUser(null)
+    setRepos(null)
 
-    if (newUser.name) {
-      const { avatar_url, name, bio, login } = newUser
-      setCurrentUser({ avatar_url, name, bio, login })
+    try {
+      const userData = await fetch(`https://api.github.com/users/${user}`)
+      if (!userData.ok) throw new Error("Usuário não encontrado!")
+      const newUser = await userData.json()
+      //console.log(newUser)
 
-      const reposData = await fetch(`https://api.github.com/users/${user}/repos`)
-       if (!reposData.ok) throw new Error('Erro ao buscar repositórios')
-      const newRepos = await reposData.json()
+      if (newUser.name) {
+        const { avatar_url, name, bio, login } = newUser
+        setCurrentUser({ avatar_url, name, bio, login })
 
-      if (newRepos.length) {
-        setRepos(newRepos)
-        console.log(newRepos)
+        const reposData = await fetch(`https://api.github.com/users/${user}/repos`)
+        if (!reposData.ok) throw new Error('Erro ao buscar repositórios')
+        const newRepos = await reposData.json()
+
+        setRepos(newRepos);
       }
+    } catch (error) {
+      setError(error.message)
     }
   }
 
@@ -45,6 +52,11 @@ function App() {
             />
             <Button onClick={handleGetData} text='Buscar'></Button>
           </div>
+
+          {error && (
+            <p className="error-message">{error}</p> 
+          )}
+
           {currentUser && currentUser.name ? (
             <>
               <div className="perfil">
@@ -61,6 +73,8 @@ function App() {
             </>
           ) : null}
 
+
+
           {repos?.length ? (
             <div>
               <h4 className="repositorio">Repositórios</h4>
@@ -72,6 +86,8 @@ function App() {
               ))}
             </div>
           ) : null}
+
+
         </div>
       </div>
     </div>
