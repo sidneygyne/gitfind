@@ -3,6 +3,7 @@ import background from '../../asserts/background.png';
 import "./styles.css"
 import ItemList from "../../components/ItemList";
 import { useState } from "react";
+import Button from "../../components/Button";
 
 function App() {
 
@@ -41,7 +42,7 @@ function App() {
               value={user}
               onChange={event => setUser(event.target.value)}
             />
-            <button onClick={handleGetData}>Buscar</button>
+            <Button onClick={handleGetData} text='Buscar'></Button>
           </div>
           {currentUser && currentUser.name ? (
             <>
@@ -63,10 +64,10 @@ function App() {
             <div>
               <h4 className="repositorio">Repositórios</h4>
               {repos.map(repos => (
-                <ItemList title={repos.name} 
-                          description={repos.description}
-                          html_url = {repos.html_url} 
-                          homepage = {repos.homepage}/>
+                <ItemList title={repos.name}
+                  description={repos.description}
+                  html_url={repos.html_url}
+                  homepage={repos.homepage} />
               ))}
             </div>
           ) : null}
