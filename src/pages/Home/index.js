@@ -21,6 +21,7 @@ function App() {
       setCurrentUser({ avatar_url, name, bio, login })
 
       const reposData = await fetch(`https://api.github.com/users/${user}/repos`)
+       if (!reposData.ok) throw new Error('Erro ao buscar repositórios')
       const newRepos = await reposData.json()
 
       if (newRepos.length) {
