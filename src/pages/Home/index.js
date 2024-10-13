@@ -36,7 +36,7 @@ function App() {
       <div className="conteudo">
         <img src={background} className="background" alt="background app" />
         <div className="info">
-          <div>
+          <div className="busca">
             <input name="usuario"
               placeholder="@username"
               value={user}

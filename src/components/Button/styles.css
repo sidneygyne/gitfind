@@ -1,5 +1,5 @@
 button {
-    width: 20%;
+    /* width: 20%; */
     border: 1px solid #999999;
     border-radius: 22px;
     color: #999999;
@@ -8,4 +8,21 @@ button {
     background: transparent;
     padding: 10px;
     margin-right: 12px;
+    width: 190px;
   }
+
+  button:hover {
+    background: #2d333b;
+  }
+
+
+  
+@media (max-width: 767px) {
+  button {
+    width: 120px;
+  }
+}
+
+@media (max-width: 500px) {
+ 
+}
