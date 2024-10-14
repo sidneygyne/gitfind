@@ -4,6 +4,7 @@ import "./styles.css"
 import ItemList from "../../components/ItemList";
 import { useState } from "react";
 import Button from "../../components/Button";
+import Rodape from "../../components/Rodape";
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
     try {
       const userData = await fetch(`https://api.github.com/users/${user}`)
       if (!userData.ok) throw new Error("Usuário não encontrado!")
-      const newUser = await userData.json()
+      const newUser = await userData.json() 
       //console.log(newUser)
 
       if (newUser.name) {
@@ -37,6 +38,10 @@ function App() {
       setError(error.message)
     }
   }
+
+  const posicaoFim = 'rodape'
+  const posicaoFixa = 'rodapeFixo'
+  const posicaorodape = currentUser && currentUser.name ? posicaoFim : posicaoFixa
 
   return (
     <div className="App">
@@ -73,8 +78,6 @@ function App() {
             </>
           ) : null}
 
-
-
           {repos?.length ? (
             <div>
               <h4 className="repositorio">Repositórios</h4>
@@ -86,10 +89,10 @@ function App() {
               ))}
             </div>
           ) : null}
-
-
         </div>
       </div>
+
+      <Rodape classeRodape={posicaorodape} />
     </div>
   );
 }
