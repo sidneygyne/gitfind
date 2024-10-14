@@ -1,6 +1,6 @@
 import { Header } from "../../components/Header";
 import background from '../../asserts/background.png';
-import "./styles.css"
+import "./styles.css";
 import ItemList from "../../components/ItemList";
 import { useState } from "react";
 import Button from "../../components/Button";
@@ -29,10 +29,10 @@ function App() {
         setCurrentUser({ avatar_url, name, bio, login })
 
         const reposData = await fetch(`https://api.github.com/users/${user}/repos`)
-        if (!reposData.ok) throw new Error('Erro ao buscar repositórios')
+        if (!reposData.ok) throw new Error('Erro ao buscar repositórios!')
         const newRepos = await reposData.json()
 
-        setRepos(newRepos);
+        setRepos(newRepos)
       }
     } catch (error) {
       setError(error.message)
@@ -82,7 +82,9 @@ function App() {
             <div>
               <h4 className="repositorio">Repositórios</h4>
               {repos.map(repos => (
-                <ItemList title={repos.name}
+                <ItemList 
+                  key={repos.id}
+                  title={repos.name}
                   description={repos.description}
                   html_url={repos.html_url}
                   homepage={repos.homepage} />
@@ -94,7 +96,7 @@ function App() {
 
       <Rodape classeRodape={posicaorodape} />
     </div>
-  );
+  )
 }
 
 export default App;
